@@ -1,4 +1,4 @@
-package com.cornershop.counterthings.data.service
+package com.example.coroutines.data
 
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Deferred

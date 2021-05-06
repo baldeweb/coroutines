@@ -1,4 +1,4 @@
-package com.example.coroutines
+package com.example.coroutines.data
 
 import retrofit2.Response
 import java.io.IOException
@@ -9,14 +9,14 @@ open class ServiceManager {
         private const val HTTP_UNAUTHORIZED = 401
         private const val HTTP_INTERNAL_SERVER_ERROR = 500
 
-        fun <T> serviceCaller(
+        fun <T> serviceCallerr(
                 api: Response<T>,
                 onSuccess: (T) -> Unit,
                 onError: (Any) -> Unit
         ) {
             if (api.code() == HTTP_OK) {
                 try {
-                    api.body()?.let { onSuccess.invoke(it) }
+                    api.body()?.run { onSuccess.invoke(this) }
                 } catch (exception: IOException) {
                     errorResponse(api, onError)
                 }

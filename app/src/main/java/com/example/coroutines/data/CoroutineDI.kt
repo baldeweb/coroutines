@@ -1,6 +1,8 @@
-package com.example.coroutines
+package com.example.coroutines.data
 
-import com.cornershop.counterthings.data.service.CoroutineCallAdapterFactory
+import com.example.coroutines.BuildConfig
+import com.example.coroutines.ui.MainActivity
+import com.example.coroutines.ui.SWViewModel
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,11 +19,15 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
 const val TIMEOUT_30_SECONDS = 10L
-const val BASE_URL = "http://xxx/"
+const val BASE_URL = "https://swapi.dev/api/"
 const val SSL = "SSL"
 
 val viewModelModules = module {
-//    viewModel { BaseViewModel() }
+    viewModel { SWViewModel(get()) }
+}
+
+val repositoryModules = module {
+    factory { SWRepository(get()) }
 }
 
 val serviceModules = module {
